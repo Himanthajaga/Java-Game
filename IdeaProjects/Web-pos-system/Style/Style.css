@@ -32,6 +32,7 @@ header{
 }
 .headerIcon>img{
     width: 50px;
+    background-color: #8f3d76;
    
 }
 
@@ -71,7 +72,13 @@ header ul li a img{
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    /* background-color: #213123; */
+    /* filter: blur(1px); */
 
+}
+header ul li a img:hover{
+    background-color: #99af9c;
+    /* filter: none; */
 }
 
 header ul li a:hover{
@@ -185,6 +192,7 @@ form div input ,select{
     height: 100vh;
 }
 #CustomerManage table , #ItemManage table{
+    border: 2px solid rgb(255, 255, 255);
     margin-left: 50px;
     margin-top: 10%;
     
@@ -380,7 +388,7 @@ section{
 
 
 .table > div > div , .tableRows > div > div{
-    color: white;
+    color: rgb(255, 255, 255);
     width: 18vw;
     height: 4vw;
     border: 0.5px solid #000000;
@@ -444,7 +452,7 @@ h5{
 }
 
 .carousel-control {
-    display: none;
+    /* display: none; */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
