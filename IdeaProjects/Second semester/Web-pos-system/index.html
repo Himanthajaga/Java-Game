@@ -100,8 +100,8 @@
                         <h5 class="invalidCustAddress"></h5>
                     </div>
                     <div>
-                        <label for="">Customer Salary</label>
-                        <input type="number" class="custSalary">
+                        <label for="">Customer Phone</label>
+                        <input type="number" class="custPhone">
                         <h5 id="invalidCustSalary"></h5>
                     </div>
     
@@ -122,7 +122,7 @@
                             <th>Customer Id</th>
                             <th>Customer Name</th>
                             <th>Customer Address</th>
-                            <th>Customer Salary</th>
+                            <th>Customer Phone</th>
                         </tr>
                     </thead>
                     <tbody class="tableRow">
@@ -225,8 +225,8 @@
                                 <input type="text" class="custName">
                             </div>
                             <div>
-                                <label for="">Customer Salary</label>
-                                <input type="number" class="custSalary">
+                                <label for="">Customer Phone</label>
+                                <input type="number" class="custPhone">
                             </div>
                         </div>
                         <div>
@@ -327,38 +327,100 @@
 <script type="module" src="/Controller/OrderController.js"></script>
 <script>
 
-$(document).ready(function(){ 
+// $(document).ready(function(){ 
     
-        $('#homePage').show();
+//         $('#homePage').show();
 
-        $('.nav-link').click(function(event){
-            event.preventDefault();
+//         $('.nav-link').click(function(event){
+//             event.preventDefault();
 
-            $('section').hide();
+//             $('section').hide();
 
-            var targetSection = $(this).attr('href');
+//             var targetSection = $(this).attr('href');
 
-            $(targetSection).show();
-            switch(targetSection){
-                case '#CustomerManage':
-                    $('.sectionName h1').text('Customer Manage');
-                    document.title = "Customer Manage";
-                    break;
-                case '#ItemManage':
-                    $('.sectionName h1').text('Item Manage');
+//             $(targetSection).show();
+//             switch(targetSection){
+//                 case '#CustomerManage':
+//                     $('.sectionName h1').text('Customer Manage');
+//                     document.title = "Customer Manage";
+//                     break;
+//                 case '#ItemManage':
+//                     $('.sectionName h1').text('Item Manage');
                    
-                    document.title = "Item Manage";
-                    break;
-                case '#OrderManage':
-                    $('.sectionName h1').text('Order Manage');
-                    document.title = "Order Manage";
-                    break;
-                default:
-                    $('.sectionName h1').text('Dashboard');
-                    document.title = "Dashboard";
-            }
-        });
-    });
+//                     document.title = "Item Manage";
+//                     break;
+//                 case '#OrderManage':
+//                     $('.sectionName h1').text('Order Manage');
+//                     document.title = "Order Manage";
+//                     break;
+//                 default:
+//                     $('.sectionName h1').text('Dashboard');
+//                     document.title = "Dashboard";
+//             }
+//         });
+//     });
 
 </script>
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+
+        function hideAllSections() {
+          sections.forEach((section) => (section.style.display = "none"));
+        }
+
+        function showSection(targetSectionId) {
+          hideAllSections();
+          const targetSection = document.querySelector(targetSectionId);
+          if (targetSection) {
+            targetSection.style.display = "block";
+          }
+        }
+
+       const lastVisited = localStorage.getItem("lastVisitedSection") || "#homePage";
+  const lastSectionName = localStorage.getItem("lastSectionName") || "Dashboard";
+  const lastTitle = localStorage.getItem("lastTitle") || "Home";
+  
+  showSection(lastVisited);
+  $('.sectionName h1').text(lastSectionName);
+  document.title = lastTitle;
+
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const targetSectionId = this.getAttribute("href");
+
+      showSection(targetSectionId);
+
+      localStorage.setItem("lastVisitedSection", targetSectionId);
+
+      let sectionName;
+      let title;
+      switch (targetSectionId) {
+        case "#CustomerManage":
+          sectionName = 'Customer Manage';
+          title = "Customer";
+          break;
+        case "#homePage":
+          sectionName = 'Dashboard';
+          title = "Home";
+          break;
+        case "#OrderManage":
+          sectionName = 'Order Manage';
+          title = "Place-Order";
+          break;
+        case "#ItemManage":
+          sectionName = 'Item Manage';
+          title = "Items";
+          break;
+      }
+      $('.sectionName h1').text(sectionName);
+      document.title = title;
+      localStorage.setItem("lastSectionName", sectionName);
+      localStorage.setItem("lastTitle", title);
+    });
+  });
+      });
+    </script>
 </html>

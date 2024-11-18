@@ -76,7 +76,7 @@ $('#OrderManage .customers').change(function(){
     $('#OrderManage .custId').val(customer.custId);
     $('#OrderManage .custName').val(customer.custName);
     $('#OrderManage .custAddress').val(customer.custAddress);
-    $('#OrderManage .custSalary').val(customer.custSalary);
+    $("#OrderManage .custPhone").val(customer.custPhone);
 });
 
 function loadItems(){

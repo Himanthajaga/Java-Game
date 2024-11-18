@@ -1,17 +1,17 @@
 export let Customers = [
-    {
-        custId : 'C01',
-        custName : 'Ravindu',
-        custAddress : 'Colombo',
-        custSalary : '2000'
-    } ,
+  {
+    custId: "C01",
+    custName: "Ravin",
+    custAddress: "Colombo",
+    custPhone: "0771411324",
+  },
 
-    {
-        custId : 'C02',
-        custName : 'Kasun',
-        custAddress : 'Galle',
-        custSalary : '1000'
-    }
+  {
+    custId: "C02",
+    custName: "Kasun",
+    custAddress: "Galle",
+    custPhone: "0774433567",
+  },
 ];
 export let Items = [
     {

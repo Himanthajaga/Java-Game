@@ -14,21 +14,21 @@ document.querySelector('#CustomerManage #customerForm').addEventListener('submit
 var custId ;
 var custName;
 var custAddress;
-var custSalary;
+var custPhone;
 
 $('#CustomerManage .saveBtn').click(function(){
 
     custId = $('#CustomerManage .custId').val();
     custName = $('#CustomerManage .custName').val();
     custAddress = $('#CustomerManage .custAddress').val();
-    custSalary = $('#CustomerManage .custSalary').val();
+    custPhone = $('#CustomerManage .custPhone').val();
 
     let customer = {
-        custId : custId,
-        custName : custName,
-        custAddress : custAddress,
-        custSalary : custSalary
-    }
+      custId: custId,
+      custName: custName,
+      custAddress: custAddress,
+      custPhone: custPhone,
+    };
 
     let validResult = validate(customer);
 
@@ -80,16 +80,14 @@ function validate(customer){
         valid = false;
     }
 
-    if(customer.custSalary != null && customer.custSalary > 0){
-        $('#CustomerManage .invalidCustSalary').text('');
-        if(valid){
-            valid = true;
-        }
-    }
-    
-    else{
-        $('#CustomerManage .invalidCustSalary').text('Invalid Customer Salary');
-        valid = false;
+    if (customer.custPhone != null && customer.custPhone > 0) {
+      $("#CustomerManage .invalidCustSalary").text("");
+      if (valid) {
+        valid = true;
+      }
+    } else {
+      $("#CustomerManage .invalidCustPhone").text("Invalid Customer Phone");
+      valid = false;
     }
 
     let customers = getAllCustomers();
@@ -104,13 +102,21 @@ function validate(customer){
 }
 
 function loadTable(customer){
-    $('#CustomerManage .tableRow').append(
-        '<tr> ' +
-            '<td>' + customer.custId + '</td>' +
-            '<td>' + customer.custName + '</td>' +
-            '<td>' + customer.custAddress + '</td>' +
-            '<td>' + customer.custSalary + '</td>' +
-        '</tr>' 
+    $("#CustomerManage .tableRow").append(
+      "<tr> " +
+        "<td>" +
+        customer.custId +
+        "</td>" +
+        "<td>" +
+        customer.custName +
+        "</td>" +
+        "<td>" +
+        customer.custAddress +
+        "</td>" +
+        "<td>" +
+        customer.custPhone +
+        "</td>" +
+        "</tr>"
     );
 }
 
@@ -141,7 +147,7 @@ function refresh(){
     $('#CustomerManage .custId').val(createCustomerId());
     $('#CustomerManage .custName').val('');
     $('#CustomerManage .custAddress').val('');
-    $('#CustomerManage .custSalary').val('');
+    $("#CustomerManage .custPhone").val("");
     $('#CustomerManage .invalidCustId').text('');
     $('#CustomerManage .invalidCustName').text('');
     $('#CustomerManage .invalidCustAddress').text('');
@@ -158,7 +164,7 @@ $('#CustomerManage .searchBtn').click(function(){
     if(customer){
         $('#CustomerManage .custName').val(customer.custName);
         $('#CustomerManage .custAddress').val(customer.custAddress);
-        $('#CustomerManage .custSalary').val(customer.custSalary);
+        $("#CustomerManage .custPhone").val(customer.custPhone);
     }
     else{
         alert('Customer Not Found');
@@ -174,11 +180,11 @@ function searchCustomer(id){
 $('#CustomerManage .updateBtn').click(function(){
     
     let UpdateCustomer = {
-        custId : 'C00',
-        custName : $('#CustomerManage .custName').val(),
-        custAddress : $('#CustomerManage .custAddress').val(),
-        custSalary : $('#CustomerManage .custSalary').val()
-    }
+      custId: "C00",
+      custName: $("#CustomerManage .custName").val(),
+      custAddress: $("#CustomerManage .custAddress").val(),
+      custPhone: $("#CustomerManage .custPhone").val(),
+    };
 
     let validResult = validate(UpdateCustomer);
 
@@ -220,12 +226,12 @@ $('#CustomerManage .removeBtn').click(function(){
 $('#CustomerManage .tableRow').on('click', 'tr', function(){
     let id = $(this).children('td:eq(0)').text();
     let name = $(this).children('td:eq(1)').text();
-    let qty = $(this).children('td:eq(2)').text();
-    let price = $(this).children('td:eq(3)').text();
+    let address = $(this).children('td:eq(2)').text();
+    let phone = $(this).children('td:eq(3)').text();
 
     $('#CustomerManage .custId').val(id);
     $('#CustomerManage .custName').val(name);
-    $('#CustomerManage .custAddress').val(qty);
-    $('#CustomerManage .custSalary').val(price);
+    $('#CustomerManage .custAddress').val(address);
+    $("#CustomerManage .custPhone").val(phone);
 });
 
